@@ -8,7 +8,7 @@ class Product(models.Model):
 
     product_title = models.CharField(max_length=100, verbose_name="Наименование продукта")
     description = models.TextField(max_length=2000, null=True, blank=True, verbose_name='Описание')
-    category = models.CharField(max_length=40, choices=CATEGORY_CHOICES, default=CATEGORY_CHOICES[0][0], verbose_name="Категория")
+    category = models.CharField(max_length=40, choices=CATEGORY_CHOICES, default=CATEGORY_CHOICES[0][1], verbose_name="Категория")
     residual = models.PositiveIntegerField(verbose_name="Остаток")
     price = models.DecimalField(max_digits=7, decimal_places=2, verbose_name="Цена")
 

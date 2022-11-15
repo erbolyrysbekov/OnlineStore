@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Вы точно хотите удалить?</h1>
+    <div class="card">
+  <div class="card-header">
+    Продукт: {{ product.product_title }}
+  </div>
+  <div class="card-body">
+      <p class="card-text">Категория: {{ product.category }}</p>
+      <p class="card-text">Цена: {{ product.price }}</p>
+
+  </div>
+</div>
+
+
+    <form action="" method="POST" class="btn">
+        {% include 'partial/form.html' with button_text='Да' %}
+    </form>
+    <button type="button" class="btn btn-success"><a href="{% url 'index' %}" style="color: white" class="text-decoration-none">Нет</a></button>
+
+
+{% endblock %}
