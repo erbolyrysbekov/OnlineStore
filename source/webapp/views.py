@@ -1,21 +1,34 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from webapp.models import Product
 from webapp.forms import ProductForm
+from django.views import View
+from django.views.generic import View, TemplateView
 
 
 # Create your views here.
 
-def index_view(request):
 
-    products = Product.objects.exclude(residual=0).order_by('product_title', 'category')
-    return render(request, 'index.html', {'products': products})
+class IndexView(View):
+
+    def get(self, request, *args, **kwargs):
+
+        products = Product.objects.exclude(residual=0).order_by('product_title', 'category')
+        return render(request, 'index.html', {'products': products})
 
 
+class ProductView(TemplateView):
+    template_name = 'product_view.html'
 
-def product_view(request, pk):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['product'] = get_object_or_404(Product, pk=kwargs.get('pk'))
+        return context
 
-    product = get_object_or_404(Product, pk=pk)
-    return render(request, 'product_view.html', {'product': product})
+
+# def product_view(request, pk):
+#
+#     product = get_object_or_404(Product, pk=pk)
+#     return render(request, 'product_view.html', {'product': product})
 
 def product_create_view(request):
     if request.method == 'GET':

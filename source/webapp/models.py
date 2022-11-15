@@ -15,3 +15,12 @@ class Product(models.Model):
 
     def __str__(self):
         return f'{self.id}) {self.product_title}'
+
+class Comment(models.Model):
+    text = models.TextField(max_length=400, verbose_name='Комментарий')
+    author = models.CharField(max_length=50, default='Unknown', verbose_name='Автор')
+    product = models.ForeignKey('webapp.Product', on_delete=models.CASCADE, related_name='comments', verbose_name='Статья')
+    created_date = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
+
+    def __str__(self):
+        return f'{self.pk}. {self.text[:20]}'
