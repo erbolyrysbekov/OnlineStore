@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Электронный магазин</h1>
+    {% for product in products %}
+    <div class="card border-success mb-3" style="max-width: 18rem;">
+          <div class="card-header bg-transparent border-success">Категория продукта: {{ product.category }}
+
+              <a href="#"><i class="bi bi-folder-symlink border-success"></i></a>
+              <a href="#"><i class="bi bi-folder-x"></i></a>
+          </div>
+            <div class="container m-4">
+                <h6 class="card-title">Название: {{ product.product_title }}</h6>
+            </div>
+
+          <div class="card-footer bg-transparent border-success">Цена: {{ product.price }}</div>
+    </div>
+    {% endfor %}
+{% endblock %}
+</div>
