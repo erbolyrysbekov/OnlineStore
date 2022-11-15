@@ -7,7 +7,7 @@
     Продукт: {{ product.product_title }}
   </div>
   <div class="card-body">
-      <p class="card-text">Категория: {{ product.category }}</p>
+      <p class="card-text">Категория: {{ product.get_category_display }}</p>
       <p class="card-text">Цена: {{ product.price }}</p>
 
   </div>

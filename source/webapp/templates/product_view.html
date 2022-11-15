@@ -9,7 +9,7 @@
         <a href="{% url 'product_delete' product.pk %}"><i class="bi bi-trash3"></i></a>
     </div>
       <div class="card-body">
-          <h5 class="card-title">Категория: {{ product.category }}</h5>
+          <h5 class="card-title">Категория: {{ product.get_category_display }}</h5>
             <p class="card-text">Описание: {{ product.description|default:"-" }}</p>
             <p class="card-text">Остаток: {{ product.residual }}</p>
             <p class="card-text">Цена: {{ product.price }}</p>

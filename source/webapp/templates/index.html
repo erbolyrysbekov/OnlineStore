@@ -5,7 +5,7 @@
     <h1>Электронный магазин</h1>
     {% for product in products %}
     <div class="card border-success mb-3" style="max-width: 18rem;">
-          <div class="card-header bg-transparent border-success">Категория продукта: {{ product.category }}
+          <div class="card-header bg-transparent border-success">Категория продукта: {{ product.get_category_display }}
 
               <a href="{% url 'product_update' product.pk %}"><i class="bi bi-folder-symlink border-success"></i></a>
               <a href="{% url 'product_delete' product.pk %}"><i class="bi bi-trash3"></i></a>
