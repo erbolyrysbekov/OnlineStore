@@ -13,11 +13,11 @@ class IndexView(View):
     def get(self, request, *args, **kwargs):
 
         products = Product.objects.exclude(residual=0).order_by('product_title', 'category')
-        return render(request, 'index.html', {'products': products})
+        return render(request, 'product/index.html', {'products': products})
 
 
 class ProductView(TemplateView):
-    template_name = 'product_view.html'
+    template_name = 'product/product_view.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -33,7 +33,7 @@ class ProductView(TemplateView):
 def product_create_view(request):
     if request.method == 'GET':
         form = ProductForm()
-        return render(request, 'create.html', {'form': form})
+        return render(request, 'product/create.html', {'form': form})
     elif request.method == 'POST':
         form = ProductForm(data=request.POST)
 
@@ -47,7 +47,7 @@ def product_create_view(request):
             )
             return redirect('index')
         else:
-            return render(request, 'create.html', {'form': form})
+            return render(request, 'product/create.html', {'form': form})
 
 def product_update_view(request, pk):
     product = get_object_or_404(Product, pk=pk)
@@ -59,7 +59,7 @@ def product_update_view(request, pk):
             'residual': product.residual,
             'price': product.price,
         })
-        return render(request, 'update.html', context={'form': form, 'product': product})
+        return render(request, 'product/update.html', context={'form': form, 'product': product})
     elif request.method == 'POST':
         form = ProductForm(data=request.POST)
         if form.is_valid():
@@ -71,13 +71,13 @@ def product_update_view(request, pk):
             product.save()
             return redirect('index')
         else:
-            return render(request, 'update.html', context={'form': form, 'product': product})
+            return render(request, 'product/update.html', context={'form': form, 'product': product})
 
 
 def product_delete_view(request, pk):
     product = get_object_or_404(Product, pk=pk)
     if request.method == "GET":
-        return render(request, 'delete.html', {'product': product})
+        return render(request, 'product/delete.html', {'product': product})
     elif request.method == "POST":
         product.delete()
         return redirect('index')

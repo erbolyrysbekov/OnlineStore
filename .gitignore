@@ -8,6 +8,10 @@ __pycache__/
 *.so
 
 # Distribution / packaging
+
+bin/
+lib/
+pyvenv.cfg
 .idea/
 .Python
 build/
@@ -35,6 +39,9 @@ MANIFEST
 *.spec
 
 # Installer logs
+pip
+pip3
+pip3.10
 pip-log.txt
 pip-delete-this-directory.txt
 

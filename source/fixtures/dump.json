@@ -1,0 +1,141 @@
+[
+{
+  "model": "webapp.product",
+  "pk": 1,
+  "fields": {
+    "product_title": "Apple test",
+    "description": "Description for apple",
+    "category": "fruits",
+    "residual": 22,
+    "price": "25.00"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 2,
+  "fields": {
+    "product_title": "Potato",
+    "description": "description for potato",
+    "category": "fruits",
+    "residual": 3,
+    "price": "15.00"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 3,
+  "fields": {
+    "product_title": "Coca-cola",
+    "description": "description for coca-cola",
+    "category": "drinks",
+    "residual": 1,
+    "price": "55.00"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 5,
+  "fields": {
+    "product_title": "test 2",
+    "description": "test  - 2",
+    "category": "vegetables",
+    "residual": 12,
+    "price": "35.00"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 6,
+  "fields": {
+    "product_title": "test 2",
+    "description": "test  - 2",
+    "category": "vegetables",
+    "residual": 12,
+    "price": "35.00"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 7,
+  "fields": {
+    "product_title": "dirol",
+    "description": "dirol 12",
+    "category": "other",
+    "residual": 14,
+    "price": "15.00"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 8,
+  "fields": {
+    "product_title": "Apple 2",
+    "description": "12331",
+    "category": "fruits",
+    "residual": 66,
+    "price": "12.00"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 9,
+  "fields": {
+    "product_title": "test 2 2",
+    "description": "213123",
+    "category": "drinks",
+    "residual": 123,
+    "price": "11.00"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 10,
+  "fields": {
+    "product_title": "123",
+    "description": "12123",
+    "category": "other",
+    "residual": 0,
+    "price": "213.00"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 11,
+  "fields": {
+    "product_title": "11111111111111",
+    "description": "11",
+    "category": "fruits",
+    "residual": 0,
+    "price": "123.00"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 12,
+  "fields": {
+    "product_title": "Pepsi",
+    "description": "pepsi 122123",
+    "category": "drinks",
+    "residual": 15,
+    "price": "50.00"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$6CCExq3lAnbRrYaQUNOx64$Tl9nE7MHYi+ZPZMsF9kSH4ZXTbXhc0pMSMgR5w0/vL0=",
+    "last_login": "2022-11-15T08:27:33.592Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2022-11-15T08:24:44.392Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
