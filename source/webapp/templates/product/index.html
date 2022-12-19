@@ -21,6 +21,7 @@
             </div>
 
           <div class="card-footer bg-transparent border-success">Цена: {{ product.price }}</div>
+            {% include 'partial/form_add_to_cart.html' %}
     </div>
     {% endfor %}
         {% if is_paginated %}
