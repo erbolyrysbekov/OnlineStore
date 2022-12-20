@@ -1,17 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from webapp.models import Product
 from webapp.forms import ProductForm
-from django.views import View
 from django.views.generic import View, TemplateView
 
 
-# Create your views here.
 
 
 class IndexView(View):
 
     def get(self, request, *args, **kwargs):
-
         products = Product.objects.exclude(residual=0).order_by('product_title', 'category')
         return render(request, 'product/index.html', {'products': products})
 
@@ -24,11 +21,6 @@ class ProductView(TemplateView):
         context['product'] = get_object_or_404(Product, pk=kwargs.get('pk'))
         return context
 
-
-# def product_view(request, pk):
-#
-#     product = get_object_or_404(Product, pk=pk)
-#     return render(request, 'product_view.html', {'product': product})
 
 def product_create_view(request):
     if request.method == 'GET':
@@ -48,6 +40,7 @@ def product_create_view(request):
             return redirect('index')
         else:
             return render(request, 'product/create.html', {'form': form})
+
 
 def product_update_view(request, pk):
     product = get_object_or_404(Product, pk=pk)
@@ -81,8 +74,3 @@ def product_delete_view(request, pk):
     elif request.method == "POST":
         product.delete()
         return redirect('index')
-
-
-
-
-
