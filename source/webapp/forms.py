@@ -1,13 +1,12 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from django.forms import widgets
-from webapp.models import CATEGORY_CHOICES, Product, Order
+from webapp.models import Product, Order
+
 
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ['product_title', 'description', 'category', 'residual', 'price']
-
 
     def clean(self):
         cleaned_data = super().clean()
@@ -20,7 +19,6 @@ class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = ['name', 'phone', 'address']
-
 
 
 class SimpleSearchForm(forms.Form):

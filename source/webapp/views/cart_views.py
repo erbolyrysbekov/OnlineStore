@@ -1,4 +1,4 @@
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import View, ListView, DeleteView, CreateView
 from django.shortcuts import redirect, get_object_or_404
 
@@ -8,18 +8,24 @@ from webapp.forms import OrderForm
 
 class AddCartItem(View):
     def post(self, request, *args, **kwargs):
+
         product = get_object_or_404(Product, pk=kwargs.get('pk'))
-        try:
-            cart = Cart.objects.get(product=product)
-            if cart.qty < product.residual:
-                cart.qty += 1
-                cart.save()
+        qty = int(request.POST.get('qty'))
+        cart, is_created = Cart.objects.get_or_create(product=product)
 
-        except Cart.DoesNotExist:
-            if product.residual > 0:
-                Cart.objects.create(product=product, qty=1)
+        if product.residual >= cart.qty + qty:
+            cart.qty += qty
+            cart.save()
+        else:
+            cart.delete()
 
-        return redirect('index')
+        return redirect(self.get_redirect_url())
+
+    def get_redirect_url(self):
+        next = self.request.GET.get('next')
+        if next:
+            return next
+        return reverse('index')
 
 
 class CartList(ListView):
@@ -45,6 +51,24 @@ class CartDelete(DeleteView):
         return self.delete(request, *args, **kwargs)
 
 
+class CartDeleteOne(DeleteView):
+    model = Cart
+    success_url = reverse_lazy('cart_index')
+
+    def get(self, request, *args, **kwargs):
+        return self.delete(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        success_url = self.get_success_url()
+        self.object.qty -= 1
+        if self.object.qty < 1:
+            self.object.delete()
+        else:
+            self.object.save()
+        return redirect(success_url)
+
+
 class OrderCreate(CreateView):
     model = Order
     form_class = OrderForm
@@ -59,4 +83,3 @@ class OrderCreate(CreateView):
             item.product.save()
             item.delete()
         return redirect(self.success_url)
-

@@ -1,13 +1,16 @@
 from django.contrib import admin
-from webapp.models import Product
-
-# Register your models here.
-
-class ProductAdmin(admin.ModelAdmin):
-    list_display = ['id', 'product_title', 'category', 'price']
-    list_filter = ['product_title', 'price']
-    search_fields = ['product_title', 'category', 'price']
-    exclude = []
+from webapp.models import Product, Order
 
 
-admin.site.register(Product, ProductAdmin)
+class OrderProductInlines(admin.TabularInline):
+    model = Order.products.through
+
+
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ['name', 'phone', 'address', 'created_at']
+    readonly_fields = ['created_at']
+    inlines = (OrderProductInlines,)
+
+
+admin.site.register(Order, OrderAdmin)
+admin.site.register(Product)
