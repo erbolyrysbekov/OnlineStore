@@ -8,7 +8,6 @@ __pycache__/
 *.so
 
 # Distribution / packaging
-
 bin/
 lib/
 pyvenv.cfg
@@ -146,3 +145,4 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
+/bin/
